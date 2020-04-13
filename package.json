@@ -1,4 +1,5 @@
 {
+  "homepage": "https://porkopek.github.io/corona-info",
   "name": "corona-info",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +10,7 @@
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
     "@types/react-dom": "^16.9.0",
+    "gh-pages": "^2.2.0",
     "novelcovid": "^1.1.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -21,7 +23,8 @@
     "prebuild": "tailwind build ./src/index.tailwind.css -c ./tailwind.config.js -o ./src/index.css",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
