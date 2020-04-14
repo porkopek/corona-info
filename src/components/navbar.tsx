@@ -9,7 +9,7 @@ export default function Navbar() {
             Corona Info
           </span>
         </div>
-        <div className="block lg:hidden">
+        {/* <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-black border-gray-400 hover:text-white hover:border-white">
             <svg
               className="fill-current h-3 w-3"
@@ -20,7 +20,7 @@ export default function Navbar() {
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
-        </div>
+        </div> */}
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
             <a
