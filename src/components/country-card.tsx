@@ -9,7 +9,7 @@ export default function CountryCard({ country }: CountryCardProps) {
     .replace(/[.,]00$/, '');
 
   return (
-    <div className="shadow rounded-md overflow-hidden hover:shadow-2xl  transition duration-300 ease-in-out">
+    <div className="shadow rounded-md overflow-hidden hover:shadow-2xl  transition duration-300 ease-in-out cursor-pointer">
       {/* header */}
       <div
         className="w-full flex justify-center items-center p-5 "
@@ -24,24 +24,24 @@ export default function CountryCard({ country }: CountryCardProps) {
       <div className="px-6 py-2">
         <div className=" flex justify-between">
           <div>Cases:</div>
-          <div>{country.cases}</div>
+          <div>{country.cases.toLocaleString()}</div>
         </div>
 
         <div className=" flex justify-between">
           <div>Today cases:</div>
-          <div>{country.todayCases}</div>
+          <div>{country.todayCases.toLocaleString()}</div>
         </div>
 
         <br />
 
         <div className=" flex justify-between">
           <div>Deaths:</div>
-          <div>{country.deaths}</div>
+          <div>{country.deaths.toLocaleString()}</div>
         </div>
 
         <div className=" flex justify-between">
           <div>Today deaths:</div>
-          <div>{country.todayDeaths}</div>
+          <div>{country.todayDeaths.toLocaleString()}</div>
         </div>
 
         <br />
@@ -53,7 +53,7 @@ export default function CountryCard({ country }: CountryCardProps) {
 
         <div className=" flex justify-between">
           <div>Cases per 1M:</div>
-          <div>{country.casesPerOneMillion}</div>
+          <div>{country.casesPerOneMillion.toLocaleString()}</div>
         </div>
 
         <div className=" flex justify-between">

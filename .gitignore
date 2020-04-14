@@ -11,6 +11,9 @@
 # production
 /build
 
+# icons
+zondicons
+
 # misc
 .DS_Store
 .env.local
