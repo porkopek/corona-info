@@ -21,7 +21,7 @@ export default function Navbar() {
             </svg>
           </button>
         </div> */}
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        {/* <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
             <a
               href="#responsive-header"
@@ -30,7 +30,7 @@ export default function Navbar() {
               Countries
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
