@@ -21,9 +21,15 @@ export default function CountriesContainer() {
           return 0;
         });
 
-      if (newCountries) {
-        localStorage.setItem('countries', JSON.stringify(newCountries));
-        setCountries(newCountries as Country[]);
+      if (newCountries.length) {
+        try {
+          const countriesString = JSON.stringify(newCountries);
+          console.log(countriesString);
+          localStorage.setItem('countries', countriesString);
+          setCountries(newCountries as Country[]);
+        } catch (error) {
+          console.log(error);
+        }
       }
     };
     process.env.NODE_ENV !== 'production'
@@ -37,7 +43,7 @@ export default function CountriesContainer() {
 
       <div className="grid md:grid-cols-3 gap-4  xl:grid-cols-3">
         {countries?.map((country) => (
-          <CountryCard country={country} />
+          <CountryCard country={country} key={country.country} />
         ))}
       </div>
     </>
