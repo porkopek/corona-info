@@ -1,5 +1,5 @@
-import { Country } from '../interfaces';
-export const countriesObject: Country[] = [
+import { ICountry } from '../interfaces';
+export const countriesObject: ICountry[] = [
   {
     updated: 1586809092316,
     country: 'Afghanistan',

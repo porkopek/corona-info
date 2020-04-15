@@ -5,7 +5,7 @@ export interface All {
   updated: number;
   active: number;
 }
-export interface Country {
+export interface ICountry {
   country: string;
   countryInfo: {
     _id: number | null;
@@ -89,4 +89,8 @@ export interface CountrySort {
   critical: number;
   casesPerOneMillion: number;
   deathsPerOneMillion: number;
+}
+
+export interface CountryCardProps extends ICountry {
+  lethality: string;
 }
