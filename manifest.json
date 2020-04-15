@@ -1,6 +1,7 @@
 {
   "short_name": "Corona Info",
   "name": "Statistics about COVID-19",
+  "description": "Check all COVID-19 statistics concerning all countries",
   "icons": [
     {
       "src": "favicon.png",
@@ -10,6 +11,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#B12A34",
+  "background_color": "#B12A34"
 }
