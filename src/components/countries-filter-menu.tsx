@@ -5,5 +5,5 @@ interface FilterMenuOptions {
   onSort: (property: keyof Country, mode: 'ASC' | 'DESC') => void;
 }
 export default function FilterMenu({ onSort }: FilterMenuOptions) {
-  onSort('todayCases', 'ASC');
+  return <div></div>;
 }
