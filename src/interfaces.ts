@@ -6,6 +6,7 @@ export interface All {
   active: number;
 }
 export interface ICountry {
+  [key: string]: any;
   country: string;
   countryInfo: {
     _id: number | null;

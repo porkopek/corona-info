@@ -1,13 +1,14 @@
 import React from 'react';
 import { ICountry, CountryCardProps } from '../interfaces';
+import Country from '../models/country';
 
 interface FilterMenuOptions {
-  onSort: (property?: keyof CountryCardProps, mode?: 'ASC' | 'DESC') => void;
+  onSort: (property?: keyof Country, mode?: 'ASC' | 'DESC') => void;
 }
 
 export default function FilterMenu({ onSort }: FilterMenuOptions) {
   const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.currentTarget.value as keyof CountryCardProps;
+    const value = e.currentTarget.value as keyof Country;
 
     onSort(value);
   };

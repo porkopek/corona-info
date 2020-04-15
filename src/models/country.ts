@@ -1,6 +1,7 @@
 import { ICountry } from '../interfaces';
 
 export default class Country {
+  [key: string]: any;
   country?: string;
   countryInfo:
     | {
@@ -12,18 +13,20 @@ export default class Country {
         iso2: string | null;
       }
     | undefined;
-  todayCases: number | undefined;
-  deaths: number | undefined;
-  todayDeaths: number | undefined;
-  recovered: number | undefined;
-  critical: number | undefined;
-  deathsPerOneMillion: number | undefined;
-  updated: number | undefined;
-  tests: number | undefined;
-  testsPerOneMillion: number | undefined;
+  todayCases: number = 0;
+  deaths: number = 0;
+  todayDeaths: number = 0;
+  recovered: number = 0;
+  critical: number = 0;
+  deathsPerOneMillion: number = 0;
+  updated: number = 0;
+  tests: number = 0;
+  testsPerOneMillion: number = 0;
   active: number = 0;
   cases: number = 0;
   casesPerOneMillion: number = 0;
-
-  lethality = () => this.deaths && this.deaths / this.cases;
+  isNewData: boolean = false;
+  public get lethality() {
+    return this.deaths && this.cases && (this.deaths / this.cases) * 100;
+  }
 }
