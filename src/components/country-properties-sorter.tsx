@@ -17,7 +17,7 @@ export default function PropertiesSorter({ onSort }: FilterMenuOptions) {
     onSort(value);
   };
   return (
-    <div className="p-5">
+    <>
       <FormControl variant="outlined" style={{ minWidth: 180 }}>
         <InputLabel id="select-label">Sort by</InputLabel>
         <Select
@@ -40,6 +40,6 @@ export default function PropertiesSorter({ onSort }: FilterMenuOptions) {
           <MenuItem value="testsPerOneMillion">tests per 1M</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </>
   );
 }

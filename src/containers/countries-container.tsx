@@ -6,6 +6,8 @@ import Country from '../models/country';
 import './countries-container.css';
 import { CircularProgress } from '@material-ui/core';
 import CountryFilter from '../components/country-filter';
+import CountriesTable from '../components/countries-table';
+import ViewSelector from '../components/view-selector';
 const track = new NovelCovid();
 export default function CountriesContainer() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -13,6 +15,7 @@ export default function CountriesContainer() {
     (JSON.parse(localStorage.getItem('countries') || '[]') as Country[]) || []
   );
   const [sortProperty, setSortProperty] = useState<keyof Country>('cases');
+  const [view, setView] = useState<'cards' | 'table'>('cards');
 
   useEffect(() => {
     // fetch the countries data
@@ -40,8 +43,8 @@ export default function CountriesContainer() {
   const handleSort = (property: keyof Country = 'cases') => {
     setSortProperty(property);
     const sortFunction = (a: Country, b: Country): 1 | -1 | 0 => {
-      if (b[property] > a[property]) return 1;
-      if (b[property] < a[property]) return -1;
+      if (b[property]! > a[property]!) return 1;
+      if (b[property]! < a[property]!) return -1;
       return 0;
     };
     var newCountries = countries.slice().sort(sortFunction);
@@ -49,29 +52,40 @@ export default function CountriesContainer() {
     setCountries(newCountries);
     setPreviousData(oldCountries);
   };
+
+  const handleChangeView = (view: 'cards' | 'table') => {
+    setView(view);
+  };
+
   const data = countries || previousData;
   return (
     <>
-      <PropertiesSorter onSort={handleSort} />
-      {/* <CountryFilter countries={countries.map((c) => c.country || '')} /> */}
-
-      <div className="grid md:grid-cols-3 gap-4  xl:grid-cols-3">
-        {data?.length === 0 && (
-          <>
-            <CircularProgress />
-            <span>Loading</span>
-          </>
-        )}
-        {data?.map((country, id) => (
-          <CountryCard
-            index={id + 1}
-            country={country}
-            key={country.country}
-            activeProperty={sortProperty}
-            previousData={previousData[id]}
-          />
-        ))}
+      <div className="flex mb-2  flex-auto">
+        <PropertiesSorter onSort={handleSort} />
+        <ViewSelector view={view} onChangeView={handleChangeView} />
       </div>
+      {/* <CountryFilter countries={countries.map((c) => c.country || '')} /> */}
+      {data?.length === 0 && (
+        <div className="flex justify-center items-center">
+          <CircularProgress color="primary" size={20} />
+          <span className="ml-2">Loading</span>
+        </div>
+      )}
+      {view === 'cards' ? (
+        <div className="grid md:grid-cols-3 gap-4  xl:grid-cols-3">
+          {data?.map((country, id) => (
+            <CountryCard
+              index={id + 1}
+              country={country}
+              key={country.country}
+              activeProperty={sortProperty}
+              previousData={previousData[id]}
+            />
+          ))}
+        </div>
+      ) : (
+        <CountriesTable countries={countries} sortProperty={sortProperty} />
+      )}
     </>
   );
 }

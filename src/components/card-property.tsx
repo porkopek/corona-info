@@ -17,6 +17,7 @@ export default function CardProperty({
         isActive && activeState
       } rounded-lg`}
     >
+      {/* red dot pulsing if new data  */}
       {isNew ? (
         <div
           className="blob green absolute "

@@ -1,5 +1,4 @@
 export default class Country {
-  [key: string]: any;
   country?: string;
   countryInfo:
     | {
@@ -25,7 +24,14 @@ export default class Country {
   casesPerOneMillion: number = 0;
   isNewData: boolean = false;
   public get lethality() {
-    return this.deaths && this.cases && (this.deaths / this.cases) * 100;
+    const lethalityString = (
+      this.deaths &&
+      this.cases &&
+      (this.deaths / this.cases) * 100
+    ).toFixed(2);
+
+    const result = Number(lethalityString);
+    return result;
   }
   toJSON() {
     return { ...this, lethality: this.lethality };
