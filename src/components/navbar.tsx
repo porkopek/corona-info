@@ -1,7 +1,7 @@
 import React from 'react';
 export default function Navbar() {
   return (
-    <nav className=" p-6 fixed w-screen top-0 bg-white shadow-md uppercase">
+    <nav className=" p-6 fixed w-screen top-0 bg-white shadow-md uppercase z-10">
       <div className="container mx-auto flex items-center justify-between flex-wrap ">
         <div className=" flex items-center flex-shrink-0 text-black mr-6">
           <img src="/corona-info/favicon.png" alt="" className="w-8 mr-2" />

@@ -1,5 +1,3 @@
-import { ICountry } from '../interfaces';
-
 export default class Country {
   [key: string]: any;
   country?: string;
@@ -28,5 +26,8 @@ export default class Country {
   isNewData: boolean = false;
   public get lethality() {
     return this.deaths && this.cases && (this.deaths / this.cases) * 100;
+  }
+  toJSON() {
+    return { ...this, lethality: this.lethality };
   }
 }

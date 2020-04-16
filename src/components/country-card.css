@@ -1,32 +1,31 @@
 .blob {
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+
   margin-left: 20px;
-  height: 10px;
-  width: 10px;
+  height: 5px;
+  width: 5px;
   transform: scale(1);
-  animation: pulse-black 2s infinite;
 }
 
 .blob.green {
-  background: rgba(76, 175, 80, 1);
-  box-shadow: 0 0 0 0 rgba(51, 217, 178, 1);
-  animation: pulse-green 2s infinite;
+  background: rgba(220, 0, 0, 1);
+  box-shadow: 0 0 0 0 rgba(51, 0, 0, 1);
+  animation: pulse-green 2s 3;
 }
 
 @keyframes pulse-green {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+    box-shadow: 0 0 0 0 rgba(200, 0, 0, 0.7);
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+    box-shadow: 0 0 0 10px rgba(200, 0, 0, 0);
   }
 
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    transform: scale(0.85);
+    box-shadow: 0 0 0 0 rgba(200, 0, 0, 0);
   }
 }
