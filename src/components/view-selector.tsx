@@ -18,10 +18,10 @@ export default function ViewSelector({
           const nextView = view === 'cards' ? 'table' : 'cards';
           return onChangeView(nextView);
         }}
+        variant="contained"
       >
         {view !== 'cards' ? <Apps /> : <FormatListNumbered />}
         <span className="ml-3 normal-case">
-          {' '}
           {view !== 'cards' ? 'Cards View' : 'Table View'}
         </span>
       </Button>

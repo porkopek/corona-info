@@ -95,3 +95,14 @@ export interface CountrySort {
 export interface CountryCardProps extends ICountry {
   lethality: string;
 }
+
+export type CountryProps =
+  | 'cases'
+  | 'todayCases'
+  | 'deaths'
+  | 'todayDeaths'
+  | 'lethality'
+  | 'casesPerOneMillion'
+  | 'deathsPerOneMillion'
+  | 'tests'
+  | 'testsPerOneMillion';

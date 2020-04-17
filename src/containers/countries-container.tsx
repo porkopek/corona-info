@@ -4,26 +4,25 @@ import CountryCard from '../components/country-card';
 import PropertiesSorter from '../components/country-properties-sorter';
 import Country from '../models/country';
 import './countries-container.css';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, FormControlLabel, Switch } from '@material-ui/core';
 import CountryFilter from '../components/country-filter';
 import CountriesTable from '../components/countries-table';
 import ViewSelector from '../components/view-selector';
+import { CountryProps } from '../interfaces';
+import getCountriesJson from '../models/dataProvider';
 const track = new NovelCovid();
 export default function CountriesContainer() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [previousData, setPreviousData] = useState<Country[]>(
     (JSON.parse(localStorage.getItem('countries') || '[]') as Country[]) || []
   );
-  const [sortProperty, setSortProperty] = useState<keyof Country>('cases');
-  const [view, setView] = useState<'cards' | 'table'>('cards');
+  const [sortProperty, setSortProperty] = useState<CountryProps>('cases');
+  const [view, setView] = useState<'cards' | 'table'>('table');
 
   useEffect(() => {
     // fetch the countries data
     const getCountries = async () => {
-      const newData = (((await track.countries()) as unknown[]) as Country[])
-        .filter((c) => c.cases > 1000)
-        .sort((a, b) => b.cases - a.cases)
-        .map((c) => Object.assign(new Country(), c));
+      const newData = await getCountriesJson(1000, 'cases');
 
       if (newData.length) {
         try {
@@ -40,7 +39,7 @@ export default function CountriesContainer() {
     getCountries();
   }, []);
 
-  const handleSort = (property: keyof Country = 'cases') => {
+  const handleSort = (property: CountryProps = 'cases') => {
     setSortProperty(property);
     const sortFunction = (a: Country, b: Country): 1 | -1 | 0 => {
       if (b[property]! > a[property]!) return 1;
@@ -60,9 +59,18 @@ export default function CountriesContainer() {
   const data = countries || previousData;
   return (
     <>
-      <div className="flex mb-2  flex-auto">
+      <div
+        className="flex mb-2  flex-auto  p-2"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.04)' }}
+      >
         <PropertiesSorter onSort={handleSort} />
         <ViewSelector view={view} onChangeView={handleChangeView} />
+        <span className="ml-4 flex">
+          <FormControlLabel
+            control={<Switch name="checkedA" />}
+            label="Secondary"
+          />
+        </span>
       </div>
       {/* <CountryFilter countries={countries.map((c) => c.country || '')} /> */}
       {data?.length === 0 && (
@@ -84,7 +92,9 @@ export default function CountriesContainer() {
           ))}
         </div>
       ) : (
-        <CountriesTable countries={countries} sortProperty={sortProperty} />
+        data.length && (
+          <CountriesTable countries={data} sortProperty={sortProperty} />
+        )
       )}
     </>
   );
