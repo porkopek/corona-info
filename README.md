@@ -1,4 +1,4 @@
-## See live site on https://porkopek.github.io/corona-info/
+
 
 Clone the repo and **`npm install`** or **`yarn`**
 
